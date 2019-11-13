@@ -10,7 +10,8 @@ class Contador extends React.Component {
     super(props);
     this.state = {
       contador: 0,
-      visibilidade: true
+      visibilidade: true,
+      finalizador:false
     };
   }
       adicionarUm = () => {
@@ -40,7 +41,7 @@ class Contador extends React.Component {
   finalizadorTudo = () => {
     this.setState(() => {
       return {
-        contador: 0
+        finalizador: true
       }
     })
   }
@@ -65,12 +66,16 @@ class Contador extends React.Component {
         {this.state.visibilidade === true  ? "Fechar Contador" : "Abrir Contador"}</button>
         {this.state.visibilidade === true ? (
         <div>
-        <button className="btnMaisUm" onClick={this.adicionarUm}>+1</button>
-        <button className="btnMenosUm" onClick={this.subtrairUm}>-1</button>
+        <button className="btnMaisUm" disabled={this.state.finalizador} onClick={this.adicionarUm}>+1</button>
+        <button className="btnMenosUm" disabled={this.state.finalizador}onClick={this.subtrairUm}>-1</button>
         <button className="btnResetar"onClick={this.resetarTudo}>resetar</button>
-        <button className="btnfinalizadorTudo"onClick={this.finalizadorTudo}>finalizador</button>
       </div>
       ) : ''}
+      {this.state.contador !== 0 && (
+        <div>
+        <button className="btnfinalizadorTudo"onClick={this.finalizadorTudo}>Finalizar Contador</button>
+        </div>
+      )}
       </div>
     );
   }

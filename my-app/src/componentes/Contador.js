@@ -1,14 +1,10 @@
-import React from 'react'
-// import './App.css'
-import BotaoAlternar from './BotaoAlternar'
-import BotaoContador from './BotaoContador'
-import BotaoFinalizar from './BotaoFinalizar'
-
-// import './App.css';
+import React from 'react';
+import BotaoAlternar from './BotaoAlternar';
+import BotaoContador from './BotaoContador';
+import BotaoFinalizar from './BotaoFinalizar';
 
 
-
-class Contador extends React.Component {
+export default class Contador extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,6 +38,13 @@ class Contador extends React.Component {
     })
   }
 
+  alternarVisibilidade = () => {
+    this.setState((prevState) =>{
+        return {visibilidade: !prevState.visibilidade 
+    }
+  })
+}
+
   finalizadorTudo = () => {
     this.setState(() => {
       return {
@@ -50,16 +53,7 @@ class Contador extends React.Component {
     })
   }
 
-  alterarVisibilidade = () => {
-    this.setState((prevState) =>{
-      if (prevState.visibilidade === true) {
-        return { visibilidade: !prevState.visibilidade }
-      } else {
-        return { visibilidade: true }
-      }
-    }
-  )
-  }
+  
 
 
   render() {
@@ -67,36 +61,25 @@ class Contador extends React.Component {
       <div>
         <p>{this.state.contador}</p>
         <BotaoAlternar 
-        onClickMetodo= {this.alterarVisibilidade}
+        onClickMetodo= {this.alternarVisibilidade}
         visibilidade={this.state.visibilidade}
         />
+        {this.state.visibilidade && (
         <BotaoContador 
         disabled = {this.state.finalizador}
-        cliqueAddUm={this.state.adicionarUm}
-        cliqueAddMenosUm={this.state.subtrairUm}
-        cliqueResetar={this.state.resetarTudo}
+        cliqueAddUm={this.adicionarUm}
+        cliqueAddMenosUm={this.subtrairUm}
+        cliqueResetar={this.resetarTudo}
         />
-      ) : ''}
-      {this.state.contador !== 0 && (
-        <div>
-        <button className="btnfinalizadorTudo"onClick={this.finalizadorTudo}>Finalizar Contador</button>
-        </div>
-      )}
+        )}
+      
+          {this.state.contador !== 0 && (
+             <BotaoFinalizar
+            cliqueCongelar={this.finalizadorTudo}
+            />
+          )}
+      
       </div>
     );
-
-  
-   
-
-function App(props) {
-  return (
-    <div className="App">
-      <h2>Contador</h2>
-      <Contador />
-    </div>
-  );
+  }
 }
-
-export default App;
-
-

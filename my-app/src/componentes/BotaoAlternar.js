@@ -1,7 +1,5 @@
-import React from 'react'
-import './App.css'
+import React from 'react';
 
-// import './App.css';
 
 const BotaoAlternar = props => {
   return (
@@ -10,8 +8,8 @@ const BotaoAlternar = props => {
     {props.visibilidade === true  ? "Fechar Contador" : "Abrir Contador"}
     </button>
   </div>
-)  
-
+  )  
 }
 
 export default BotaoAlternar;
+

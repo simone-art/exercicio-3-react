@@ -1,5 +1,6 @@
-// import React from 'react'
-// import './App.css'
+import React from 'react';
+import Contador from './componentes/Contador';
+import './App.css';
 
 // // import './App.css';
 
@@ -84,15 +85,15 @@
   
    
 
-// function App(props) {
-//   return (
-//     <div className="App">
-//       <h2>Contador</h2>
-//       <Contador />
-//     </div>
-//   );
-// }
+function App(props) {
+  return (
+    <div className="App">
+      <h2>Contador</h2>
+      <Contador />
+    </div>
+  );
+}
 
-// export default App;
+export default App;
 
 
